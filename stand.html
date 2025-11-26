@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Siddur Stand & Adjustable Shtender</title>
+
+    <!-- Load Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+
+        tailwind.config = {
+
+            theme: {
+
+                extend: {
+
+                    colors: {
+
+                        'wood-dark': '#4b2a21', /* Deep brown/mahogany */
+
+                        'wood-light': '#8d6d5d',
+
+                        'gold-accent': '#c29b40',
+
+                        'off-white': '#f7f5ef',
+
+                        'taupe': '#e9e4dc',
+
+                    },
+
+                    fontFamily: {
+
+                        sans: ['Inter', 'sans-serif'],
+
+                    },
+
+                    boxShadow: {
+
+                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+    <style>
+
+        /* Custom scroll behavior for navigation */
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        /* Basic Card hover effect */
+
+        .feature-card {
+
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+        }
+
+        .feature-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+        }
+
+        /* Horizontal gallery styles */
+        :root{
+            --wood-dark: #4b2a21;
+            --gold-accent: #c29b40;
+            --wood-light: #8d6d5d;
+            --off-white: #f7f5ef;
+        }
+
+    .image-gallery{display:flex;gap:1.5rem;align-items:flex-start;overflow-x:auto;overflow-y:hidden;padding:1rem 0;cursor:grab;scroll-behavior:smooth;-webkit-overflow-scrolling:touch; -ms-overflow-style: none; scrollbar-width: none;}
+    .image-gallery:active{cursor:grabbing}
+    /* Hide native scrollbar track/thumb but keep scrolling functional */
+    .image-gallery::-webkit-scrollbar{height:0}
+    .image-gallery::-webkit-scrollbar-track{background:transparent}
+    .image-gallery::-webkit-scrollbar-thumb{background:transparent}
+
+    /* Card size set to requested dimensions */
+    .image-item{flex:0 0 420px;width:420px;height:494px;text-align:center;background:#fff;border-radius:12px;padding:1.25rem;box-shadow:0 12px 30px rgba(75,42,33,0.07);display:flex;flex-direction:column;align-items:center;justify-content:space-between;box-sizing:border-box;border:none}
+    /* Adjust placeholder height to better fit new card size */
+    .image-placeholder{width:100%;height:280px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;overflow:hidden;background: linear-gradient(45deg,#f8f0ec,#efe7df);border:none}
+        .image-placeholder img{width:100%;height:100%;object-fit:cover;display:block}
+        .image-text{font-size:1.05rem;color:var(--wood-dark);font-weight:600;margin:0.25rem 0 0.6rem 0}
+        .image-subtext{font-size:0.95rem;color:#6b6b6b;margin-bottom:0.8rem}
+    .select-btn{display:inline-block;padding:0.6rem 1.4rem;min-width:270px;background:var(--wood-light);color:var(--off-white);border-radius:8px;font-weight:700;text-decoration:none;box-shadow:0 8px 20px rgba(141,109,93,0.12);transition:transform .18s ease,box-shadow .18s ease}
+        .select-btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(141,109,93,0.18);opacity:0.98}
+
+    @media (max-width:768px){.image-item{flex:0 0 360px;width:360px;height:auto;padding:1rem}.image-placeholder{height:220px}}
+
+        /* View Models CTA - boxy, larger, dark brown to match site */
+        .view-model-btn{
+            display:inline-block;
+            background:var(--wood-dark);
+            color:var(--off-white);
+            padding:0.9rem 1.6rem;
+            font-size:1.125rem;
+            font-weight:800;
+            border-radius:6px; /* slightly rounded but boxy */
+            box-shadow:0 10px 25px rgba(75,42,33,0.12);
+            text-decoration:none;
+            border:2px solid rgba(0,0,0,0.06);
+            transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease;
+        }
+        .view-model-btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(75,42,33,0.16);opacity:0.98}
+
+    </style>
+
+</head>
+
+<body class="bg-off-white font-sans text-wood-dark">
+
+    <!-- Navigation Bar -->
+
+    <header class="sticky top-0 z-50 bg-wood-dark shadow-lg">
+
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+
+            <div class="text-xl font-extrabold text-gold-accent tracking-wider">Sefer n' Smarter</div>
+
+            <div class="space-x-4">
+
+                <a href="#features" class="text-taupe hover:text-gold-accent transition duration-200">Features</a>
+
+                <a href="#models" class="text-taupe hover:text-gold-accent transition duration-200">Models</a>
+
+                <a href="#" onclick="openModelModal('allmodels');return false;" class="text-taupe hover:text-gold-accent transition duration-200">All Items</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- Hero Section -->
+
+    <section class="relative bg-taupe pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden">
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between">
+
+            <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+
+                <h1 class="text-5xl md:text-6xl font-extrabold text-wood-dark mb-4 leading-tight">The Ultimate <span class="text-gold-accent">SIDDUR STAND</span></h1>
+
+                <p class="text-xl text-wood-dark/80 mb-8 max-w-lg mx-auto lg:mx-0">Elevate your reading experience for the Haggadah, Tikkun, or Gemara. Perfect angles, premium materials, and compact storage.</p>
+
+                <a href="#cta" class="inline-block px-10 py-4 bg-gold-accent text-wood-dark text-lg font-bold rounded-xl shadow-xl hover:bg-yellow-600 transition duration-300 transform hover:scale-105">Order Yours Today</a>
+
+            </div>
+
+            <div class="lg:w-1/2 flex justify-center relative">
+
+                <div class="relative p-6 bg-off-white rounded-3xl shadow-3xl">
+
+                    <img src="Images/big-shtender-cropped-keep.png" alt="Adjustable Wooden Seder Stand" class="w-full max-w-md h-auto rounded-xl object-contain" onerror="this.onerror=null; this.src='https://placehold.co/400x400/8d6d5d/f7f5ef?text=Wooden+Shtender';">
+
+                    <div class="absolute -bottom-6 right-6 text-off-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg" style="background:var(--wood-light);">Premium Mahogany Finish</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Features Section -->
+
+    <section id="features" class="py-20 bg-off-white">
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+            <h2 class="text-4xl font-bold text-center text-wood-dark mb-12">Designed for Clarity & Comfort</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="feature-card p-6 bg-white rounded-xl shadow-lg border-t-4 border-gold-accent text-center">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gold-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+
+                    <h3 class="text-xl font-semibold text-wood-dark mb-2">Ergonomic Adjustability</h3>
+
+                    <p class="text-wood-dark/70">Easily switch between multiple height and angle settings to ensure maximum comfort and reduce neck strain during long readings.</p>
+
+                </div>
+
+                <div class="feature-card p-6 bg-white rounded-xl shadow-lg border-t-4 border-gold-accent text-center">
+
+                    <!-- Decorative icon instead of photo to match other feature cards -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gold-accent mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9-4 9 4M3 7v10l9 4 9-4V7" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 11v8" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 7v4" opacity="0.8" />
+                    </svg>
+
+                    <h3 class="text-xl font-semibold text-wood-dark mb-2">Folds Flat for Storage</h3>
+
+                    <p class="text-wood-dark/70">Our innovative design allows the stand to collapse completely flat, making storage and travel effortless. Fits perfectly in a drawer.</p>
+
+                </div>
+
+                <div class="feature-card p-6 bg-white rounded-xl shadow-lg border-t-4 border-gold-accent text-center">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gold-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+
+                    <h3 class="text-xl font-semibold text-wood-dark mb-2">Lasting Quality</h3>
+
+                    <p class="text-wood-dark/70">Crafted from fine polished wood or durable clear acrylic with sturdy brass hardware, built to last for generations of holiday use.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Model Showcase Section -->
+
+    <section id="models" class="py-20 bg-taupe">
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+            <h2 class="text-4xl font-bold text-center text-wood-dark mb-12">Choose Your Style</h2>
+
+            <div class="image-gallery" aria-label="Model gallery">
+
+                <div class="image-item">
+                    <div class="image-placeholder">
+                        <img src="Images/big-shtender-cropped-keep.png" alt="Classic Mahogany" onerror="this.onerror=null; this.src='https://placehold.co/320x200/4b2a21/f7f5ef?text=Classic+Wood';">
+                    </div>
+                    <p class="image-text">The Classic Mahogany</p>
+                    <p class="image-subtext">Traditional look with a rich finish and golden hinges.</p>
+                    <a class="select-btn" href="#" onclick="openModelModal('model1');return false;">Select Model</a>
+                </div>
+
+                <div class="image-item">
+                    <div class="image-placeholder">
+                        <img src="Images/jc-ssl-600x.webp" alt="Modern Acrylic" onerror="this.onerror=null; this.src='https://placehold.co/320x200/ffffff/4b2a21?text=Modern+Acrylic';">
+                    </div>
+                    <p class="image-text">The Modern Clear</p>
+                    <p class="image-subtext">Sleek, transparent design for a clean, contemporary feel.</p>
+                    <a class="select-btn" href="#cta">Select Model</a>
+                </div>
+
+                <div class="image-item">
+                    <div class="image-placeholder">
+                        <img src="Images/combination-box-shtender.png" alt="Storage Box Stand" onerror="this.onerror=null; this.src='https://placehold.co/320x200/8d6d5d/f7f5ef?text=Storage+Box';">
+                    </div>
+                    <p class="image-text">The Storage Box Stand</p>
+                    <p class="image-subtext">Doubles as a secure storage box with a lock.</p>
+                    <a class="select-btn" href="#" onclick="openModelModal('model2');return false;">Select Model</a>
+                </div>
+
+                <div class="image-item">
+                    <div class="image-placeholder">
+                        <img src="Images/price-259-94.jpg" alt="Value Shtender" onerror="this.onerror=null; this.src='https://placehold.co/320x200/8d6d5d/f7f5ef?text=Value+Model';">
+                    </div>
+                    <p class="image-text">Value Model</p>
+                    <p class="image-subtext">A great balance of quality and value.</p>
+                    <a class="select-btn" href="#cta">Select Model</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Call to Action Section -->
+
+    <section id="cta" class="bg-wood-dark py-20">
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+            <h2 class="text-4xl font-extrabold text-off-white mb-4">Ready to Upgrade Your Seder?</h2>
+
+            <p class="text-xl text-taupe mb-8 max-w-2xl mx-auto">Enjoy a more comfortable and focused reading experience. Supplies are limited for the holiday season!</p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+
+                <a href="#" class="view-model-btn" onclick="openModelModal('allmodels');return false;">View All Models</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="bg-wood-light py-8">
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-taupe text-sm">
+
+            <p>&copy; 2025 sefer n' smarter. All rights reserved.</p>
+
+            <p class="mt-2">Quality craftsmanship for the most important occasions.</p>
+
+        </div>
+
+    </footer>
+
+    <!-- Contact modal (appears when user clicks the contact trigger) -->
+    <div id="contact-box" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full text-center">
+            <h3 class="text-xl font-bold text-wood-dark mb-4">Contact Us</h3>
+            <p class="text-wood-dark/80 mb-2">Phone: <a href="tel:+17184355900" class="text-gold-accent font-semibold">+1 (718) 435-5900</a></p>
+            <p class="text-wood-dark/80 mb-6">Email: <a href="mailto:Sefernsmater@gmail.com" class="text-gold-accent font-semibold">Sefernsmater@gmail.com</a></p>
+            <button onclick="document.getElementById('contact-box').classList.add('hidden');" class="px-6 py-2 bg-gold-accent text-wood-dark font-semibold rounded-lg hover:bg-yellow-500 transition duration-200">Close</button>
+        </div>
+    </div>
+
+    <!-- Model 1 modal (opens when user clicks Select Model on Classic Mahogany) -->
+    <div id="model1-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-lg shadow-2xl max-w-5xl w-full mx-4 text-left">
+            <h3 class="text-2xl font-bold text-wood-dark mb-4">Classic Mahogany — Details</h3>
+
+            <div class="md:flex md:items-start md:gap-6">
+                <!-- Large main image on the left -->
+                <div class="md:flex-1 mb-4 md:mb-0">
+                    <img src="Images/wooden-shtender-flat.png" alt="Wooden Shtender Flat" style="width:100%;height:420px;object-fit:cover;border-radius:8px;" onerror="this.onerror=null;this.src='https://placehold.co/720x420/4b2a21/f7f5ef?text=wooden-shtender-flat.png'">
+                    <div class="mt-3 font-semibold text-wood-dark">Flat Shtender</div>
+                    <div class="text-sm text-wood-dark/70">Classic mahogany finish, handcrafted details.</div>
+                </div>
+
+                <!-- Thumbnails and details on the right -->
+                <div class="md:w-80 flex-shrink-0">
+                    <div class="grid grid-cols-1 gap-4 mb-4">
+                        <div class="small-image-item bg-off-white rounded-md p-2 border border-taupe text-sm">
+                            <img src="Images/big-shtender-cropped-keep.png" alt="Big Shtender" style="width:100%;height:200px;object-fit:cover;border-radius:6px;" onerror="this.onerror=null;this.src='https://placehold.co/360x200/8d6d5d/f7f5ef?text=big-shtender-cropped-keep.png'">
+                            <div class="mt-2 font-semibold text-wood-dark">Big Shtender — Junior</div>
+                            <div class="text-xs text-wood-dark/70">Junior — slightly narrower width</div>
+                        </div>
+
+                        <div class="small-image-item bg-off-white rounded-md p-2 border border-taupe text-sm">
+                            <img src="Images/bbc-500x.webp" alt="BBC image" style="width:100%;height:200px;object-fit:cover;border-radius:6px;" onerror="this.onerror=null;this.src='https://placehold.co/360x200/cccccc/f7f5ef?text=bbc-500x.webp'">
+                            <div class="mt-2 font-semibold text-wood-dark">Alternate View</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 text-sm text-wood-dark/80">
+                        <p class="mb-2">Dimensions: custom — contact for exact sizing.</p>
+                        <p class="mb-2">Finish: Classic mahogany with protective lacquer.</p>
+                        <p>Availability: Made to order. Reserve by contacting us.</p>
+                    </div>
+
+                    <div class="flex justify-start">
+                        <button onclick="closeModelModal('model1')" class="px-6 py-2 bg-wood-dark text-off-white font-semibold rounded-md hover:opacity-95 transition">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model 2 modal (Storage Box Stand) -->
+    <div id="model2-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-2xl max-w-lg w-full text-center">
+            <h3 class="text-xl font-bold text-wood-dark mb-3">Storage Box Stand — Details</h3>
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="small-image-item bg-off-white rounded-md p-3 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-3 border border-taupe text-sm">Coming soon</div>
+            </div>
+
+            <p class="text-wood-dark/70 mb-4">More images and ordering options coming soon. Contact us to reserve.</p>
+            <div class="flex justify-center">
+                <button onclick="closeModelModal('model2')" class="px-6 py-2 bg-wood-dark text-off-white font-semibold rounded-md hover:opacity-95 transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Models modal (opens from CTA) -->
+    <div id="allmodels-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-2xl max-w-2xl w-full text-center">
+            <h3 class="text-xl font-bold text-wood-dark mb-4">All Models</h3>
+
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+                <div class="small-image-item bg-off-white rounded-md p-4 border border-taupe text-sm">Coming soon</div>
+            </div>
+
+            <p class="text-wood-dark/70 mb-4">We’ll add full galleries soon. Check back or contact us to reserve a model.</p>
+            <div class="flex justify-center">
+                <button onclick="closeModelModal('allmodels')" class="px-6 py-2 bg-wood-dark text-off-white font-semibold rounded-md hover:opacity-95 transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating contact button to open the contact modal -->
+    <button id="contact-trigger" onclick="document.getElementById('contact-box').classList.remove('hidden');" aria-label="Contact" class="fixed bottom-6 right-6 bg-gold-accent text-wood-dark px-4 py-3 rounded-full shadow-lg hover:bg-yellow-500 transition">Contact</button>
+
+    <script>
+        function openModelModal(id){
+            var el = document.getElementById(id+'-modal');
+            if(el) el.classList.remove('hidden');
+        }
+        function closeModelModal(id){
+            var el = document.getElementById(id+'-modal');
+            if(el) el.classList.add('hidden');
+        }
+        // close modal when user presses ESC
+        document.addEventListener('keydown', function(e){
+            if(e.key === 'Escape'){
+                var m1 = document.getElementById('model1-modal');
+                if(m1 && !m1.classList.contains('hidden')) m1.classList.add('hidden');
+                var m2 = document.getElementById('model2-modal');
+                if(m2 && !m2.classList.contains('hidden')) m2.classList.add('hidden');
+                var mall = document.getElementById('allmodels-modal');
+                if(mall && !mall.classList.contains('hidden')) mall.classList.add('hidden');
+                var c = document.getElementById('contact-box');
+                if(c && !c.classList.contains('hidden')) c.classList.add('hidden');
+            }
+        });
+        // close modal when clicking the overlay (but not when clicking inside content)
+        var modelOverlay = document.getElementById('model1-modal');
+        if(modelOverlay){
+            modelOverlay.addEventListener('click', function(e){
+                if(e.target === modelOverlay) modelOverlay.classList.add('hidden');
+            });
+        }
+        var contactOverlay = document.getElementById('contact-box');
+        if(contactOverlay){
+            contactOverlay.addEventListener('click', function(e){
+                if(e.target === contactOverlay) contactOverlay.classList.add('hidden');
+            });
+        }
+        var model2Overlay = document.getElementById('model2-modal');
+        if(model2Overlay){
+            model2Overlay.addEventListener('click', function(e){
+                if(e.target === model2Overlay) model2Overlay.classList.add('hidden');
+            });
+        }
+        var modelAllOverlay = document.getElementById('allmodels-modal');
+        if(modelAllOverlay){
+            modelAllOverlay.addEventListener('click', function(e){
+                if(e.target === modelAllOverlay) modelAllOverlay.classList.add('hidden');
+            });
+        }
+    </script>
+
+</body>
+
+</html>
